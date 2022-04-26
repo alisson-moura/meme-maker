@@ -1,0 +1,24 @@
+{
+  "name": "meme-maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisson-moura/meme-maker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alisson-moura/meme-maker/issues"
+  },
+  "homepage": "https://github.com/alisson-moura/meme-maker#readme",
+  "dependencies": {
+    "sharp": "^0.30.4"
+  }
+}
