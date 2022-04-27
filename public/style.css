@@ -40,17 +40,19 @@ button {
 
 .main {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 0.3fr 2fr;
   gap: 12px;
 }
-.main .image {
-  width: 100%;
-  max-height: 70vh;
-}
-.main .image img{
-  max-height: 70vh;
-}
 
+.main .image {
+  margin: auto;
+} 
+.main .image img{
+  max-height: 60vh;
+  max-width: 50vw;
+  width: 50vw;
+  height: 60vh;
+}
 
 .texts form {
   display: flex;
@@ -67,6 +69,15 @@ form button {
   border-radius: 8px;
   border: none;
   padding: 12px 0;
+}
+
+form input {
+  border:  none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: 'Prompt';
+  padding: 8px;
+  margin-bottom: 12px;
 }
 
 .list ul {

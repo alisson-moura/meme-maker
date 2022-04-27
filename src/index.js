@@ -54,16 +54,15 @@ const validate = opts => {
 
 const svgText = (arrayText, width, height) => {
 
-  const tag = arrayText.map((l, i) => `<text x="2%" y="${15 * (i + 1)}%"  class="title">${l}</text>`)
+  const tag = arrayText.map((l, i) => `<text x="50%" y="${15 * (i + 1)}%" text-anchor="middle"  class="title">${l}</text>`)
 
   return `
   <svg width="${width}px" height="${height}px">
    <style>
     .title { fill: #fff; 
       font-family: "Roboto";
-      font-size: 60px; 
-      font-weight: bold; 
-      margin-top: 10% }
+      font-size: 50px; 
+      font-weight: bold;}
    </style>
     ${tag.join('\n')}
   </svg>
@@ -84,9 +83,9 @@ const main = async (opts) => {
 
   const image = sharp(file)
   const meta = await image.metadata()
-  const width = meta.width
-  const height = Math.floor(0.3 * meta.height)
-  const bottom = Math.floor(meta.height - (meta.height * 0.1))
+  const width = meta.width - 10
+  const height = Math.floor(0.6 * meta.height)
+  const bottom = Math.floor(meta.height - (meta.height * 0.2))
   const top = 30
 
   const svgTop = textTop.length > 0
