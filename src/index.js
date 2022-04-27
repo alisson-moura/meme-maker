@@ -3,7 +3,7 @@ const { resolve } = require('path')
 const sharp = require('sharp')
 
 const config = {
-  folder: resolve(__dirname, '..', 'images'),
+  folder: resolve(__dirname, '..', 'public', 'memes'),
   fileName: function (name) {
     return resolve(this.folder, name)
   }
@@ -85,8 +85,8 @@ const main = async (opts) => {
   const image = sharp(file)
   const meta = await image.metadata()
   const width = meta.width
-  const height = 0.3 * meta.height
-  const bottom = meta.height - (meta.height * 0.1)
+  const height = Math.floor(0.3 * meta.height)
+  const bottom = Math.floor(meta.height - (meta.height * 0.1))
   const top = 30
 
   const svgTop = textTop.length > 0
@@ -133,10 +133,7 @@ const main = async (opts) => {
 
 
   await image.toFile(config.fileName('out.jpg'))
-
+  return config.fileName('out.jpg')
 }
 
-main({
-  textBottom: 'Hello World',
-  file: 'drake.jpg'
-})
+module.exports = { main }

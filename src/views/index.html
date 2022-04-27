@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+
+{% block content %}
+<div class="title">
+  <img src="/public/assets/dino.png" alt="">
+  <h1>Meme Maker</h1>
+</div>
+
+<div class="content">
+  <div class="main">
+    <div class="list">
+      <ul>
+        {% for file in files %}
+          <li><img class="files" src="/public/memes/{{file}}" alt="{{file}}"></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="image">
+      <img id="active" src="" alt="">
+    </div>
+  </div>
+  <div class="texts">
+    <form action="/create-meme" method="post">
+      <input type="hidden" id="file" name="file" value="">
+      <label for="textTop">Texto superior</label>
+      <input type="text" name="textTop">
+      <label for="textBottom">Texto inferior</label>
+      <input type="text" name="textBottom">
+      <button>Gerar Meme</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
