@@ -11,7 +11,7 @@
     <div class="list">
       <ul>
         {% for file in files %}
-          <li><img class="files" src="/public/memes/{{file}}" alt="{{file}}"></li>
+        <li><img class="files" src="/public/memes/{{file}}" alt="{{file}}"></li>
         {% endfor %}
       </ul>
     </div>
@@ -27,6 +27,12 @@
       <label for="textBottom">Texto inferior</label>
       <input type="text" name="textBottom">
       <button>Gerar Meme</button>
+    </form>
+    <form id="formFile" enctype="multipart/form-data" action="/send-file" method="post">
+      <div class="input-file">
+        <span>Enviar Arquivo</span>
+        <input type="file" name="sendFile" accept="image/*" id="sendFile">
+      </div>
     </form>
   </div>
 </div>
