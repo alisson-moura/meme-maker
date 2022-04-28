@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const { unlink, readdir } = require('fs/promises');
 const express = require('express')
 require('express-async-errors')
+const cors = require('cors')
 const expressNunjucks = require('express-nunjucks');
 const multer = require('multer')
 
@@ -11,8 +12,9 @@ const { main } = require('./index');
 const app = express();
 const isDev = app.get('env') === 'development';
 
+app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded())
+
 app.set('views', __dirname + '/views');
 expressNunjucks(app, {
   watch: isDev,
