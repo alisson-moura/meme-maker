@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { resolve } = require('path')
-const {unlink, readdir } = require('fs').promises;
+const { unlink, readdir } = require('fs').promises;
 const express = require('express')
 require('express-async-errors')
 const cors = require('cors')
@@ -8,6 +8,8 @@ const expressNunjucks = require('express-nunjucks');
 const multer = require('multer')
 
 const { main } = require('./index');
+const { logger } = require('./logger')
+
 
 console.log(process.env)
 
@@ -16,7 +18,7 @@ const isDev = app.get('env') === 'development';
 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 
 app.set('views', __dirname + '/views');
 expressNunjucks(app, {
@@ -53,8 +55,7 @@ app.get('/', async (req, res) => {
 
 
 app.post('/create-meme', async (req, res) => {
-  const { file, textTop, textBottom } = req.body
-  console.log(file, textBottom, textTop)
+  const { fil, textTop, textBottom } = req.body
   const result = await main({ file, textBottom, textTop })
   return res.download(result, async err => {
     await unlink(result)
@@ -66,6 +67,7 @@ app.post('/send-file', upload.single('sendFile'), async (req, res) => {
 })
 
 app.use((err, req, res, next) => {
+  logger.log({level: 'error', message: err.message, stack: err.stack})
   return res.render('server-error')
 })
 
