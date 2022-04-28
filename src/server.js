@@ -4,19 +4,18 @@ const { unlink, readdir } = require('fs').promises;
 const express = require('express')
 require('express-async-errors')
 const cors = require('cors')
+const helmet = require('helmet');
 const expressNunjucks = require('express-nunjucks');
 const multer = require('multer')
 
 const { main } = require('./index');
 const { logger } = require('./logger')
 
-
-console.log(process.env)
-
 const app = express();
-const isDev = app.get('env') === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 
 app.use(cors())
+app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -55,7 +54,7 @@ app.get('/', async (req, res) => {
 
 
 app.post('/create-meme', async (req, res) => {
-  const { fil, textTop, textBottom } = req.body
+  const { file, textTop, textBottom } = req.body
   const result = await main({ file, textBottom, textTop })
   return res.download(result, async err => {
     await unlink(result)
