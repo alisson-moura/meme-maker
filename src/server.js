@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const { unlink, readdir } = require('fs/promises');
+const {unlink, readdir } = require('fs').promises;
 const express = require('express')
 require('express-async-errors')
 const cors = require('cors')

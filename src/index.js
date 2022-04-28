@@ -1,4 +1,3 @@
-const { access } = require('fs/promises')
 const { resolve } = require('path')
 const sharp = require('sharp')
 
