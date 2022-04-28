@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { resolve } = require('path')
 const {unlink, readdir } = require('fs').promises;
 const express = require('express')
@@ -8,6 +9,7 @@ const multer = require('multer')
 
 const { main } = require('./index');
 
+console.log(process.env)
 
 const app = express();
 const isDev = app.get('env') === 'development';
@@ -63,6 +65,10 @@ app.post('/send-file', upload.single('sendFile'), async (req, res) => {
   return res.redirect('/')
 })
 
-app.listen(3000);
+app.use((err, req, res, next) => {
+  return res.render('server-error')
+})
+
+app.listen(process.env.PORT);
 
 
