@@ -15,7 +15,7 @@ const app = express();
 const isDev = process.env.NODE_ENV === 'development';
 
 app.use(cors())
-app.use(helmet({contentSecurityPolicy: false}))
+app.use(helmet({contentSecurityPolicy: false, }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -51,7 +51,6 @@ app.get('/', async (req, res) => {
   const files = await readdir(resolve(__dirname, '..', 'public', 'memes'))
   res.render('index', { files });
 });
-
 
 app.post('/create-meme', async (req, res) => {
   const { file, textTop, textBottom } = req.body

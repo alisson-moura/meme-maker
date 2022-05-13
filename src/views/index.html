@@ -17,24 +17,14 @@
     </div>
     <div class="image">
       <img id="active" src="" alt="">
+      <canvas id="canvasPreview"></canvas>
     </div>
   </div>
   <div class="texts">
-    <form action="/create-meme" method="post">
-      <input type="hidden" id="file" name="file" value="">
-      <label for="textTop">Texto superior</label>
-      <input type="text" name="textTop">
-      <label for="textBottom">Texto inferior</label>
-      <input type="text" name="textBottom">
-      <button>Gerar Meme</button>
-    </form>
-    <form id="formFile" enctype="multipart/form-data" action="/send-file" method="post">
-      <div class="input-file">
-        <span>Enviar Arquivo</span>
-        <input type="file" name="sendFile" accept="image/*" id="sendFile">
-      </div>
-    </form>
+    <input type="text" id="text">
+    <button id="saveBtn">Gerar Meme</button>
   </div>
 </div>
-
+<div id="selectionTool"></div>
+<script src="/public/edit-meme.js"></script>
 {% endblock %}

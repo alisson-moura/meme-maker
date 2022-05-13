@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,7 +9,8 @@ body {
   background: #eee;
 }
 
-button, input {
+button,
+input {
   outline: 0;
 }
 
@@ -26,6 +27,7 @@ button {
   font-size: 40px;
   color: #00bff3;
 }
+
 .title img {
   width: 10%;
   margin-right: 16px;
@@ -33,7 +35,7 @@ button {
 
 .content {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 4fr 1fr;
   margin: 0 50px;
   max-height: 100vh;
 }
@@ -45,20 +47,35 @@ button {
 }
 
 .main .image {
-  margin: auto;
-} 
-.main .image img{
-  max-height: 60vh;
-  max-width: 50vw;
-  width: 50vw;
-  height: 60vh;
+  width: 90%;
+  height: 90%;
+  position: relative;
+  justify-self: center;
+  cursor: url(http://localhost:80/public/assets/CrosshairNormal.cur), auto;
 }
 
-.texts form {
+.image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#canvasPreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.texts {
   display: flex;
   flex-direction: column;
 }
-form button {
+
+.texts button {
   margin-top: 12px;
   background: #00bff3;
   color: #fff;
@@ -71,8 +88,8 @@ form button {
   padding: 12px 0;
 }
 
-form input {
-  border:  none;
+.texts input {
+  border: none;
   border-radius: 8px;
   font-size: 20px;
   font-family: 'Prompt';
@@ -84,15 +101,17 @@ form input {
   list-style: none;
   gap: 12px;
   height: 70vh;
-  width:120px;
+  width: 120px;
   overflow-y: scroll;
 }
-.list ul li img{
+
+.list ul li img {
   width: 100px;
   height: 100px;
   cursor: pointer;
   transition: ease 200ms;
 }
+
 .list ul li img:hover {
   opacity: 0.7;
 }
@@ -120,4 +139,11 @@ form input {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+#selectionTool {
+  position: fixed;
+  display: none;
+  border: 2px dashed greenyellow;
+  pointer-events: none;
 }
