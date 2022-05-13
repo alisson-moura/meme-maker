@@ -147,3 +147,32 @@ button {
   border: 2px dashed greenyellow;
   pointer-events: none;
 }
+
+.container-error {
+  width: 50vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.container-error img {
+  border-radius: 12px;
+}
+.container-error a {
+  text-decoration: none;
+  margin-top: 12px;
+  font-family: 'Prompt';
+  font-weight: bold;
+  padding: 8px 16px;
+  background: #00bff3;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 24px;
+}
+.container-error a:hover {
+  background: #0198c2;
+}
