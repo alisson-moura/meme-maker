@@ -19,7 +19,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('views', `${__dirname}/views`);
+app.set('views', resolve(__dirname, '..', 'views'));
 expressNunjucks(app, {
   watch: isDev,
   noCache: isDev,
@@ -60,7 +60,11 @@ app.post('/create-meme', async (req, res) => {
   });
 }); */
 
-app.post('/send-file', upload.single('sendFile'), async (req, res) => res.redirect('/'));
+app.post(
+  '/send-file',
+  upload.single('sendFile'),
+  async (req, res) => res.redirect('/'),
+);
 
 app.use((err, req, res, _next) => {
   logger.log({ level: 'error', message: err.message, stack: err.stack });
