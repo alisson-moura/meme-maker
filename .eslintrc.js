@@ -14,5 +14,6 @@ module.exports = {
   },
   rules: {
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'max-len': ['error', { code: 100 }],
   },
 };
