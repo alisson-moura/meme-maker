@@ -3,7 +3,7 @@
 require('dotenv').config();
 const fs = require('fs/promises');
 const { resolve } = require('path');
-const logger = require('../../providers/logger');
+const { logger } = require('../../providers/logger');
 const { query } = require('../index');
 
 async function migrate() {
