@@ -1,0 +1,35 @@
+{% extends "template.html" %}
+
+{% block content %}
+<div class="title">
+  <img src="/public/assets/dino.png" alt="">
+  <h1>Meme Maker</h1>
+</div>
+
+<div class="login-page">
+  <img src="/public/assets/create-account.png" alt="" srcset="">
+  <form action="/create-account" method="post">
+    <h2>Criar Conta</h2>
+    <input name="email" type="text" placeholder="E-mail">
+    <input name="password" type="password" placeholder="******">
+    <button type="submit">Enviar</button>
+    <a href="/login">Voltar</a>
+  </form>
+
+
+  {% if error %}
+  {% import "components/toasts.njk" as toasts %}
+  {{toasts.toast(error, 'error')}}
+  {% endif %}
+
+  {% if success %}
+  {% import "components/toasts.njk" as toasts %}
+  {{toasts.toast(success)}}
+  <script>
+    setTimeout(function () {
+      window.location.href = `${window.location.origin}/login`
+    }, 2900);
+  </script>
+  {% endif %}
+</div>
+{% endblock %}

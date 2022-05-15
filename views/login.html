@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+
+{% block content %}
+<div class="title">
+  <img src="/public/assets/dino.png" alt="">
+  <h1>Meme Maker</h1>
+</div>
+
+<div class="login-page">
+  <img src="/public/assets/login.png" alt="" srcset="">
+  <form action="/login" method="post">
+    <h2>Entrar</h2>
+    <input name="email" type="text" placeholder="E-mail">
+    <input name="password" type="password" placeholder="******">
+    <button type="submit">Enviar</button>
+    <a href="/create-account">Criar Conta</a>
+  </form>
+
+  {% if error %}
+    {% import "components/toasts.njk" as toasts %}
+    {{toasts.toast(error, 'error')}}
+  {% endif %}
+
+</div>
+{% endblock %}

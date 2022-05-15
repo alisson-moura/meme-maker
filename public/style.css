@@ -162,6 +162,7 @@ button {
 .container-error img {
   border-radius: 12px;
 }
+
 .container-error a {
   text-decoration: none;
   margin-top: 12px;
@@ -173,6 +174,62 @@ button {
   border-radius: 12px;
   font-size: 24px;
 }
+
 .container-error a:hover {
   background: #0198c2;
+}
+
+.login-page {
+  margin: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-page img {
+  width: 40%;
+  max-width: 600px;
+  border-radius: 12px;
+}
+
+.login-page form {
+  color: #00bff3;
+  font-size: 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 30%;
+  margin-bottom: 12%;
+}
+
+.login-page form input {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  font-family: 'Prompt';
+}
+
+.login-page form a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #0198c2;
+}
+
+.login-page form button {
+  background: #00bff3;
+  color: #fff;
+  font-family: 'Prompt';
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.1cm;
+  border-radius: 8px;
+  border: none;
+  padding: 12px 0;
+  width: 50%;
 }

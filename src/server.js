@@ -1,15 +1,15 @@
 require('dotenv').config();
 const { resolve } = require('path');
-const { readdir } = require('fs').promises;
 const express = require('express');
 require('express-async-errors');
 const cors = require('cors');
 const helmet = require('helmet');
 const expressNunjucks = require('express-nunjucks');
-const multer = require('multer');
-const crypto = require('crypto');
 
-const { logger } = require('./logger');
+const nunjucks = require('nunjucks');
+const { logger } = require('./providers/logger');
+const router = require('./router');
+const sessionConfig = require('./providers/session');
 
 const app = express();
 const isDev = process.env.NODE_ENV === 'development';
@@ -18,13 +18,16 @@ app.use(cors());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(sessionConfig);
 
 app.set('views', resolve(__dirname, '..', 'views'));
 expressNunjucks(app, {
   watch: isDev,
-  noCache: isDev,
+  noCache: true,
+  loader: nunjucks.FileSystemLoader,
 });
 
+/*
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, resolve(__dirname, '..', 'public', 'memes'));
@@ -43,14 +46,10 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage }); */
 
 app.use('/public', express.static(resolve(__dirname, '..', 'public')));
-
-app.get('/', async (req, res) => {
-  const files = await readdir(resolve(__dirname, '..', 'public', 'memes'));
-  res.render('index', { files });
-});
+app.use(router);
 
 /*
 app.post('/create-meme', async (req, res) => {
@@ -59,13 +58,13 @@ app.post('/create-meme', async (req, res) => {
     await unlink(result);
   });
 }); */
-
+/*
 app.post(
   '/send-file',
   upload.single('sendFile'),
   async (req, res) => res.redirect('/'),
 );
-
+*/
 app.use((err, req, res, _next) => {
   logger.log({ level: 'error', message: err.message, stack: err.stack });
   return res.render('server-error');

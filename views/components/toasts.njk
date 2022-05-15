@@ -1,0 +1,91 @@
+{% macro toast(message, type) %}
+
+{% if type == 'error' %}
+  {% set color = '#cf370f' %}
+{% else %}
+  {% set color = '#00bff3' %}
+{% endif %}
+
+
+<div id="snackbar" class="show" style="background-color: {{ color }};">
+  <style>
+    #snackbar {
+      visibility: hidden;
+      min-width: 250px;
+      margin: auto;
+      color: #fff;
+      text-align: center;
+      border-radius: 12px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      top: 8%;
+      right: 1%;
+      font-size: 17px;
+      white-space: nowrap;
+    }
+  
+    #snackbar.show {
+      visibility: visible;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+  
+    @-webkit-keyframes fadein {
+      from {
+        right: 0;
+        opacity: 0;
+      }
+  
+      to {
+        right: 1%;
+        opacity: 1;
+      }
+    }
+  
+    @keyframes fadein {
+      from {
+        right: 0;
+        opacity: 0;
+      }
+  
+      to {
+        right: 1%;
+        opacity: 1;
+      }
+    }
+  
+    @-webkit-keyframes fadeout {
+      from {
+        right: 1%;
+        opacity: 1;
+      }
+  
+      to {
+        right: 0;
+        opacity: 0;
+      }
+    }
+  
+    @keyframes fadeout {
+      from {
+        right: 1%;
+        opacity: 1;
+      }
+  
+      to {
+        right: 0;
+        opacity: 0;
+      }
+    }
+  </style>
+  <script>
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function () {
+      x.remove()
+    }, 2800);
+  </script>
+  {{message}}
+</div>
+{% endmacro %}
