@@ -66,10 +66,10 @@ Object.keys(events)
   .forEach(eventName => $canvasPreview.addEventListener(eventName, events[eventName]));
 
 const drawText = (text, ctx, actualX, actualY, selectionWidth, selectionHeight) => {
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'white';
   canvasTxt.font = 'Prompt';
   canvasTxt.fontWeight = 'bold';
-  canvasTxt.fontSize = 30;
+  canvasTxt.fontSize = 50;
   canvasTxt.justify = false;
   canvasTxt.drawText(ctx, text, actualX, actualY, selectionWidth, selectionHeight);
 };
@@ -77,9 +77,9 @@ const drawText = (text, ctx, actualX, actualY, selectionWidth, selectionHeight) 
 const insertText = e => {
   const selectionWidth = Number($selectionTool.style.width.replace('px', ''));
   const selectionHeight = Number($selectionTool.style.height.replace('px', ''));
-  const index = texts.findIndex(i => i.relativeStartX == relativeStartX);
+  const index = texts.findIndex(i => i.relativeStartX === relativeStartX);
 
-  if (index == -1) texts.push({
+  if (index === -1) texts.push({
     relativeStartX,
     relativeStartY,
     selectionWidth,
@@ -89,7 +89,14 @@ const insertText = e => {
   else texts[index].text = e.target.value;
 
   ctxText.clearRect(relativeStartX, relativeStartY, selectionWidth, selectionHeight);
-  drawText(e.target.value, ctxText, relativeStartX, relativeStartY, selectionWidth, selectionHeight);
+  drawText(
+    e.target.value,
+    ctxText,
+    relativeStartX,
+    relativeStartY,
+    selectionWidth,
+    selectionHeight,
+  );
 };
 $inputText.addEventListener('keyup', insertText);
 
