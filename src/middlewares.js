@@ -1,5 +1,13 @@
 const sessionMiddleware = (req, res, next) => {
-  if (!req.session.isAuth) return res.redirect('/login');
+  switch (req.url) {
+    case '/login':
+    case '/create-account':
+      if (req.session.isAuth) return res.redirect('/');
+      break;
+    default:
+      if (!req.session.isAuth) return res.redirect('/login');
+      break;
+  }
 
   return next();
 };
